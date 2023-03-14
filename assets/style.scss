@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400;500&display=swap');
+
+*{
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+
+}
+
+$violet: rgba(32, 24, 44, 0.527);
+$black: rgba(0, 0, 0, 0.527);
+$grey: #18181C;
+
+@mixin flex($direction, $wrap, $just, $align){
+  display: flex;
+  flex-flow: $direction $wrap;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin rock($left, $top, $vw, $min){
+  left: $left;
+  top: $top;
+  width: $vw;
+  height: calc($vw/0.715);
+  min-width: $min;
+  min-height: calc($min/0.715);
+}
+
+
+@keyframes moveRock1{
+  0%{transform: rotate(13deg) translate(0,0);}
+
+  50%{transform: rotate(13deg) translate(10px,-12px);}
+  
+  100%{transform: rotate(13deg) translate(0,0);}
+}
+
+@keyframes moveRock2{
+  0%{transform: scaleX(-1) rotate(13deg) translate(0,0);}
+
+  50%{transform: scaleX(-1) rotate(13deg) translate(7px,5px);}
+  
+  100%{transform: scaleX(-1) rotate(13deg) translate(0,0);}
+}
+
+@keyframes moveRock3{
+  0%{transform: rotate(32deg) translate(0,0);}
+
+  50%{transform: rotate(32deg) translate(-6px,4px);}
+  
+  100%{transform: rotate(32deg) translate(0,0);}
+}
+
+@keyframes moveRock4{
+  0%{transform: scaleX(-1) rotate(40deg) translate(0,0);}
+
+  50%{transform: scaleX(-1) rotate(40deg) translate(9px,9px);}
+  
+  100%{transform: scaleX(-1) rotate(40deg) translate(0,0);}
+}
+
+@keyframes moveRock5{
+  0%{transform: rotate(280deg) translate(0,0);}
+
+  50%{transform: rotate(280deg) translate(-6px,4px);}
+  
+  100%{transform: rotate(280deg) translate(0,0);}
+}
+
+body{
+  background-color: black;
+  color: #fff;
+}
+
+.bg{
+  position: relative;
+
+  >img{
+    position: absolute;
+    z-index: -5;
+  }
+}
+
+.rock1{
+  @include rock(40vw, 30vh, 30vw, 300px);
+  animation: moveRock1 7s linear 0s infinite;
+}
+
+.rock2{
+  @include rock(75vw, 2vh, 14vw, 200px);
+  animation: moveRock2 5s linear 0s infinite;
+}
+
+.rock3{
+  @include rock(75vw, 70vh, 8vw, 150px);
+  animation: moveRock3 4s linear 0s infinite;
+}
+
+.rock4{
+  @include rock(20vw, -60vh, 40vw, 250px);
+  animation: moveRock4 8s linear 0s infinite;
+}
+
+.rock5{
+  @include rock(-10vw, 0, 20vw, 350px);
+  animation: moveRock5 5s linear 0s infinite;
+}
+
+h1{
+  font-weight: 300;
+  font-size: clamp(22px, 2vw, 28px);
+  padding: 30px 10px 15px;
+}
+
+.red{
+  color: rgb(207, 33, 33);
+  font-weight: 400;
+}
+
+.green{
+  color: rgb(38, 139, 38);
+  font-weight: 400;
+}
+
+.main{
+  width: 100%;
+  padding: 40px;
+  @include flex(column, nowrap, space-between, flex-start);
+  gap: 25px;
+}
+
+.top{
+  @include flex(row, wrap, space-between, center);
+  width: 100%;
+  padding: 0 25px
+}
+
+.search{
+  @include flex(row, nowrap, flex-start, center);
+}
+
+button{
+    width: 60px;
+    background-color: $violet;
+    height: 40px;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+  }
+
+input{
+  width: 250px;
+  background-color: $black;
+  backdrop-filter: blur(0.5px);
+  border: solid 2px $violet;
+  height: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: #fff;
+  appearance: none;
+  outline: none;
+  padding: 10px 15px;
+
+  &:focus{
+    background-color: $violet;
+    border: none;
+    transition: all 0.1s ease-in;
+  }
+}
+
+.top-btn{
+  width: 180px;
+  border-radius: 10px;
+  font-weight: 400;
+}
+
+.table{
+  width: 100%;
+  background-color: $black;
+  backdrop-filter: blur(0.5px);
+  border: solid 2px $violet;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+table{
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+th{
+  font-weight: 500;
+}
+
+td{
+  font-weight: 200;
+}
+
+tbody tr:nth-child(odd){
+  background-color: $violet;
+  backdrop-filter: blur(0.5px);
+  border-radius: 10px;
+}
+
+th, td{
+  padding: 15px 10px 15px 10px;
+}
+
+.page-manage{
+  @include flex(row, nowrap, center, center);
+  width: 100%;
+  gap: 10px;
+}
+
+.chevron{
+  width: 28px;
+  height: 28px;
+  background-color: $violet;
+  border-radius: 4px;
+  @include flex(row, nowrap, center, center);
+  color: #fff;
+  cursor: pointer;
+
+  i{
+    font-size: 16px;
+  }
+}
+
+.page-num{
+  width: 20px;
+  @include flex(row, nowrap, center, center)
+}
+
+.disabled{
+  color: $grey;
+  cursor: auto;
+}
+
+.hidden{
+  display: none;
+}
